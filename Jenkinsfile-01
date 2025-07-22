@@ -25,10 +25,10 @@ pipeline {
                 bat 'mvn install'
             }
         }
-        stage('Deploy') {
+        stage('Install') {
             steps {
-                echo 'Deploying...'
-                bat 'mvn deploy'
+                echo 'Installing...'
+                bat 'mvn install'
             }
         }
     }
