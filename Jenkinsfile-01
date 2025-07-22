@@ -13,12 +13,24 @@ pipeline {
                 bat 'mvn package'
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                bat 'mvn test'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building...'
                 bat 'mvn install'
             }
         }
-      
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                bat 'mvn deploy'
+            }
+        }
     }
 }
+
