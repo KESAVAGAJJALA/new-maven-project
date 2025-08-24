@@ -4,31 +4,31 @@ pipeline {
         stage('Clean') {
             steps {
                 echo 'Cleaning...'
-                bat 'mvn clean'
+                sh 'mvn clean'
             }
         }
         stage('Package') {
             steps {
                 echo 'Packaging...'
-                bat 'mvn package'
+                sh 'mvn package'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
         stage('Build') {
             steps {
                 echo 'Building...'
-                bat 'mvn install'
+                sh 'mvn install'
             }
         }
         stage('Install') {
             steps {
                 echo 'Installing...'
-                bat 'mvn install'
+                sh 'mvn install'
             }
         }
     }
