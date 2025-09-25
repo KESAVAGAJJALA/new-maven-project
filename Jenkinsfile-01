@@ -31,6 +31,25 @@ pipeline {
                 sh 'mvn install'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('Sonar') { // Replace 'Sonar' with your SonarQube server name in Jenkins
+                    sh '''
+                        mvn sonar:sonar \
+                          -Dsonar.projectKey=your_project_key \
+                          -Dsonar.organization=your_org \
+                          -Dsonar.host.url=https://sonarcloud.io \
+                          -Dsonar.login=your_sonar_token
+                    '''
+                }
+            }
+        }
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true // Abort if quality gate fails
+                }
+            }
+        }
     }
 }
-
