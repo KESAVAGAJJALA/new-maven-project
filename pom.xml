@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.devopsmadeeasy</groupId>
     <artifactId>devopsmadeeasy</artifactId>
@@ -21,8 +22,13 @@
         <log4j.version>1.2.17</log4j.version>
         <nexus.host.url>http://34.207.142.146:8081</nexus.host.url>
         <tomcat.host.url>http://3.109.186.189:8080</tomcat.host.url>
-        <sonar.host.url>http://0.0.0.0:9000</sonar.host.url>
-        <sonar.login>YOUR-TOKEN-GOES-HERE</sonar.login>
+
+        <!-- ✅ SonarCloud configuration -->
+        <sonar.projectKey>KESAVAGAJJALA_JavaWebCalculator</sonar.projectKey>
+        <sonar.organization>KESAVAGAJJALA</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>YOUR-SONARCLOUD-TOKEN</sonar.login>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -76,12 +82,6 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <repositories>
@@ -117,7 +117,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ✅ FIX: Use latest Maven WAR Plugin -->
+            <!-- ✅ Latest WAR plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -127,11 +127,13 @@
                 </configuration>
             </plugin>
 
+            <!-- ✅ SonarCloud plugin -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.8.0.2131</version>
             </plugin>
+
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -143,6 +145,7 @@
                     </webApp>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -154,6 +157,7 @@
                     <wtpContextName>devopsmadeeasy</wtpContextName>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
